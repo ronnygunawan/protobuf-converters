@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\RG.System.Text.Json.ProtobufSerializer.csproj" />
+    <ProjectReference Include="..\..\src\Json\RG.ProtobufConverters.Json.csproj" />
     <ProjectReference Include="..\Protos\Protos.csproj" />
   </ItemGroup>
 
