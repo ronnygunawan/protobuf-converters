@@ -1,0 +1,62 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Protos.Foo";
+option java_multiple_files = true;
+option java_package = "protos.Foo";
+option java_outer_classname = "Foo";
+
+package foo;
+
+service FooService {
+  rpc Lorem (LoremRequest) returns (LoremReply);
+  rpc Ipsum (IpsumRequest) returns (IpsumReply);
+  rpc Dolor (DolorRequest) returns (DolorReply);
+}
+
+message LoremRequest {
+  string string_field = 1;
+  int32 int_field = 2;
+  bool bool_field = 3;
+  TeletubbiesName enum_field = 4;
+}
+
+message LoremReply {
+  string string_field = 1;
+  int32 int_field = 2;
+  bool bool_field = 3;
+  TeletubbiesName enum_field = 4;
+}
+
+message IpsumRequest {
+  string string_field = 1;
+}
+
+message IpsumReply {
+  message NarutoReply {
+    string string_field = 1;
+  }
+  message SasukeReply {
+    int32 int_field = 1;
+    bool bool_field = 2;
+  }
+  oneof status {
+    NarutoReply naruto = 1;
+    SasukeReply sasuke = 2;
+  }
+}
+
+message DolorRequest {
+  string string_field = 1;
+}
+
+message DolorReply {
+  repeated string string_array = 1;
+  repeated LoremReply lorem_array = 2;
+}
+
+enum TeletubbiesName {
+  TINKY_WINKY = 0;
+  DIPSY = 1;
+  LALA = 2;
+  PO = 3;
+}
