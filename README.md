@@ -9,7 +9,7 @@ Use Protobuf generated classes in System.Text.Json serialization.
 string json = foo.SerializeToJson();
 
 // Deserialize from json
-FooMessage? foo = foo.DeserializeToProtobufMessage<FooMessage>();
+FooMessage? foo = json.DeserializeToProtobufMessage<FooMessage>();
 ```
 
 ## Use Protobuf classes in SignalR
