@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B45F5BB-7141-43CE-834B-D22789CC1B31}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RG.ProtobufConverters.Json", "src\Json\RG.ProtobufConverters.Json.csproj", "{79DE4F13-0B86-4891-BBE0-4F0082CC5E28}"

@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Protos.Foo;
-using RG.System.Text.Json.ProtobufSerializer;
-using System.Text.Json;
+using RG.ProtobufConverters.Json;
 using Xunit;
 
 namespace Tests {
@@ -15,9 +14,8 @@ namespace Tests {
 				EnumField = TeletubbiesName.Lala
 			};
 
-			string json = JsonSerializer.Serialize(loremRequest, ProtobufConverter.Options);
-
-			LoremRequest deserialized = JsonSerializer.Deserialize<LoremRequest>(json, ProtobufConverter.Options)!;
+			string json = loremRequest.SerializeToJson();
+			LoremRequest deserialized = json.DeserializeToProtobufMessage<LoremRequest>()!;
 
 			deserialized.StringField.Should().Be("asdfg");
 			deserialized.IntField.Should().Be(123456);
@@ -34,9 +32,8 @@ namespace Tests {
 				EnumField = TeletubbiesName.Lala
 			};
 
-			string json = JsonSerializer.Serialize(loremReply, ProtobufConverter.Options);
-
-			LoremReply deserialized = JsonSerializer.Deserialize<LoremReply>(json, ProtobufConverter.Options)!;
+			string json = loremReply.SerializeToJson();
+			LoremReply deserialized = json.DeserializeToProtobufMessage<LoremReply>()!;
 
 			deserialized.StringField.Should().Be("asdfg");
 			deserialized.IntField.Should().Be(123456);
@@ -52,9 +49,8 @@ namespace Tests {
 				}
 			};
 
-			string json = JsonSerializer.Serialize(ipsumReply, ProtobufConverter.Options);
-
-			IpsumReply deserialized = JsonSerializer.Deserialize<IpsumReply>(json, ProtobufConverter.Options)!;
+			string json = ipsumReply.SerializeToJson();
+			IpsumReply deserialized = json.DeserializeToProtobufMessage<IpsumReply>()!;
 
 			deserialized.StatusCase.Should().Be(IpsumReply.StatusOneofCase.Naruto);
 			deserialized.Sasuke.Should().BeNull();
@@ -75,9 +71,8 @@ namespace Tests {
 				}
 			};
 
-			string json = JsonSerializer.Serialize(dolorReply, ProtobufConverter.Options);
-
-			DolorReply deserialized = JsonSerializer.Deserialize<DolorReply>(json, ProtobufConverter.Options)!;
+			string json = dolorReply.SerializeToJson();
+			DolorReply deserialized = json.DeserializeToProtobufMessage<DolorReply>()!;
 
 			deserialized.StringArray.Should().ContainInOrder("quick", "brown", "fox");
 			deserialized.LoremArray.Should().HaveCount(3);

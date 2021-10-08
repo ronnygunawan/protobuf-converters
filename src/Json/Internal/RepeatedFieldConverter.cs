@@ -19,7 +19,7 @@ namespace RG.ProtobufConverters.Json.Internal {
 			Type elementType = typeToConvert.GetGenericArguments()[0];
 			lock (Gate) {
 				if (!ConverterByElementType.TryGetValue(elementType, out JsonConverter? converter)) {
-					converter = (JsonConverter)Activator.CreateInstance(typeof(RepeatedFieldConverter<>).MakeGenericType(elementType), options);
+					converter = (JsonConverter)Activator.CreateInstance(typeof(RepeatedFieldConverter<>).MakeGenericType(elementType), options)!;
 					ConverterByElementType.Add(elementType, converter);
 				}
 				return converter;
@@ -59,7 +59,9 @@ namespace RG.ProtobufConverters.Json.Internal {
 				repeatedField.Add(value);
 			}
 
-			throw new JsonException();
+			if (!reader.Read() && reader.TokenType != JsonTokenType.EndArray) throw new JsonException();
+
+			return repeatedField;
 		}
 
 		public override void Write(Utf8JsonWriter writer, RepeatedField<T> value, JsonSerializerOptions options) {
