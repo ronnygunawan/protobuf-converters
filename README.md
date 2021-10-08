@@ -11,3 +11,19 @@ string json = foo.SerializeToJson();
 // Deserialize from json
 FooMessage? foo = foo.DeserializeToProtobufMessage<FooMessage>();
 ```
+
+## Use Protobuf classes in SignalR
+
+Configure hub:
+```cs
+services.AddSignalR()
+    .AddJsonProtocol(options => options.PayloadSerializerOptions = ProtobufJsonConverter.Options);
+```
+
+Configure client:
+```cs
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://yoururl/yourhub")
+    .AddJsonProtocol(options => options.PayloadSerializerOptions = ProtobufJsonConverter.Options)
+    .Build();
+```
