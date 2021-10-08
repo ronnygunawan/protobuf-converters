@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>RG.ProtobufConverters.Json</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Ronny Gunawan</Authors>
+    <Product>RG,ProtobufConverters.Json</Product>
+    <Description>Serialize generated protobuf classes using System.Text.Json</Description>
+    <Copyright>(C) 2021 Ronny Gunawan</Copyright>
+    <PackageProjectUrl>https://github.com/ronnygunawan/protobuf-converters</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ronnygunawan/protobuf-converters</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>protobuf json</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.18.1" />
+  </ItemGroup>
+
+</Project>
