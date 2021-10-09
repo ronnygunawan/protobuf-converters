@@ -4,18 +4,19 @@
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>RG.ProtobufConverters.Json</PackageId>
+    <PackageId>RG.ProtobufConverters.MessagePack</PackageId>
     <Version>1.0.0</Version>
     <Authors>Ronny Gunawan</Authors>
-    <Product>RG,ProtobufConverters.Json</Product>
-    <Description>Serialize generated protobuf classes using System.Text.Json</Description>
+    <Product>RG,ProtobufConverters.MessagePack</Product>
+    <Description>Serialize generated protobuf classes using MessagePack</Description>
     <Copyright>(C) 2021 Ronny Gunawan</Copyright>
     <PackageProjectUrl>https://github.com/ronnygunawan/protobuf-converters</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ronnygunawan/protobuf-converters</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>protobuf json</PackageTags>
+    <PackageTags>protobuf messagepack</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
@@ -28,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MessagePack" Version="2.3.85" />
     <PackageReference Include="Google.Protobuf" Version="3.18.1" />
+    <PackageReference Include="RG.Missil" Version="1.0.13" />
   </ItemGroup>
 
 </Project>

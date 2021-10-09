@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using Protos.Foo;
-using RG.ProtobufConverters.Json;
+using RG.ProtobufConverters.MessagePack;
 using Xunit;
 
 namespace Tests {
-	public class ResolverTests {
+	public class MessagePackTests {
 		[Fact]
 		public void CanSerializeGrpcRequest() {
 			LoremRequest loremRequest = new() {
@@ -14,8 +14,8 @@ namespace Tests {
 				EnumField = TeletubbiesName.Lala
 			};
 
-			string json = loremRequest.SerializeToJson();
-			LoremRequest deserialized = json.DeserializeToProtobufMessage<LoremRequest>()!;
+			byte[] bytes = loremRequest.SerializeUsingMessagePack();
+			LoremRequest deserialized = bytes.DeserializeUsingMessagePack<LoremRequest>()!;
 
 			deserialized.StringField.Should().Be("asdfg");
 			deserialized.IntField.Should().Be(123456);
@@ -32,8 +32,8 @@ namespace Tests {
 				EnumField = TeletubbiesName.Lala
 			};
 
-			string json = loremReply.SerializeToJson();
-			LoremReply deserialized = json.DeserializeToProtobufMessage<LoremReply>()!;
+			byte[] bytes = loremReply.SerializeUsingMessagePack();
+			LoremReply deserialized = bytes.DeserializeUsingMessagePack<LoremReply>()!;
 
 			deserialized.StringField.Should().Be("asdfg");
 			deserialized.IntField.Should().Be(123456);
@@ -49,8 +49,8 @@ namespace Tests {
 				}
 			};
 
-			string json = ipsumReply.SerializeToJson();
-			IpsumReply deserialized = json.DeserializeToProtobufMessage<IpsumReply>()!;
+			byte[] bytes = ipsumReply.SerializeUsingMessagePack();
+			IpsumReply deserialized = bytes.DeserializeUsingMessagePack<IpsumReply>()!;
 
 			deserialized.StatusCase.Should().Be(IpsumReply.StatusOneofCase.Naruto);
 			deserialized.Sasuke.Should().BeNull();
@@ -71,8 +71,8 @@ namespace Tests {
 				}
 			};
 
-			string json = dolorReply.SerializeToJson();
-			DolorReply deserialized = json.DeserializeToProtobufMessage<DolorReply>()!;
+			byte[] bytes = dolorReply.SerializeUsingMessagePack();
+			DolorReply deserialized = bytes.DeserializeUsingMessagePack<DolorReply>()!;
 
 			deserialized.StringArray.Should().ContainInOrder("quick", "brown", "fox");
 			deserialized.LoremArray.Should().HaveCount(3);
