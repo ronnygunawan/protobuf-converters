@@ -41,39 +41,24 @@ namespace RG.ProtobufConverters.Json.Internal {
 
 			RepeatedField<T> repeatedField = new();
 
-			// Get repeat count
-			if (!reader.Read() && reader.TokenType != JsonTokenType.Number) throw new JsonException();
-			int repeatCount = reader.GetInt32();
+			while (reader.Read()) {
+				if (reader.TokenType == JsonTokenType.EndArray) return repeatedField;
 
-			for (int i = 0; i < repeatCount; i++) {
 				// Get the value
-				T value;
-				if (_valueConverter != null) {
-					reader.Read();
-					value = _valueConverter.Read(ref reader, typeof(T), options)!;
-				} else {
-					value = JsonSerializer.Deserialize<T>(ref reader, options)!;
-				}
+				T value = _valueConverter.Read(ref reader, typeof(T), options)!;
 
 				// Add to repeatedField
 				repeatedField.Add(value);
 			}
 
-			if (!reader.Read() && reader.TokenType != JsonTokenType.EndArray) throw new JsonException();
-
-			return repeatedField;
+			throw new JsonException();
 		}
 
 		public override void Write(Utf8JsonWriter writer, RepeatedField<T> value, JsonSerializerOptions options) {
 			writer.WriteStartArray();
-			writer.WriteNumberValue(value.Count);
 
 			foreach (T item in value) {
-				if (_valueConverter != null) {
-					_valueConverter.Write(writer, item, options);
-				} else {
-					JsonSerializer.Serialize(writer, item, options);
-				}
+				_valueConverter.Write(writer, item, options);
 			}
 
 			writer.WriteEndArray();
