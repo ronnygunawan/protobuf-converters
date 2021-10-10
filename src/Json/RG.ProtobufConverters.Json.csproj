@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RG.ProtobufConverters.Json</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Ronny Gunawan</Authors>
     <Product>RG,ProtobufConverters.Json</Product>
     <Description>Serialize generated protobuf classes using System.Text.Json</Description>
