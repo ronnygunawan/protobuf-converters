@@ -11,6 +11,7 @@ service FooService {
   rpc Lorem (LoremRequest) returns (LoremReply);
   rpc Ipsum (IpsumRequest) returns (IpsumReply);
   rpc Dolor (DolorRequest) returns (DolorReply);
+  rpc Sit (SitRequest) returns (SitReply);
 }
 
 message LoremRequest {
@@ -52,6 +53,15 @@ message DolorRequest {
 message DolorReply {
   repeated string string_array = 1;
   repeated LoremReply lorem_array = 2;
+}
+
+message SitRequest {
+  string string_field = 1;
+}
+
+message SitReply {
+  string string_field = 1;
+  LoremReply lorem = 2;
 }
 
 enum TeletubbiesName {

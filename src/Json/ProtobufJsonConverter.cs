@@ -132,6 +132,11 @@ namespace RG.ProtobufConverters.Json {
 					&& _oneofPropertiesByOneofCase.TryGetValue(oneofCaseProperty, out IReadOnlyDictionary<string, PropertyInfo>? oneofPropertyByName)) {
 					string caseName = JsonSerializer.Deserialize(ref reader, oneofCaseProperty.PropertyType, options)!.ToString()!;
 
+					// Skip reading oneof property
+					if (caseName == "None") {
+						continue;
+					}
+
 					// Get next property key
 					if (!reader.Read()
 						|| reader.TokenType != JsonTokenType.PropertyName
@@ -176,6 +181,10 @@ namespace RG.ProtobufConverters.Json {
 				JsonSerializer.Serialize(writer, value, oneofCaseProperty.PropertyType, options);
 
 				string oneofPropertyName = value.ToString()!;
+
+				// No need to serialize oneof property if case was None
+				if (oneofPropertyName == "None") continue;
+
 				writer.WritePropertyName(
 					options.PropertyNamingPolicy?.ConvertName(oneofPropertyName) ?? oneofPropertyName
 				);
