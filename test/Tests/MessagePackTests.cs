@@ -80,5 +80,32 @@ namespace Tests {
 			deserialized.LoremArray[1].StringField.Should().Be("over");
 			deserialized.LoremArray[2].StringField.Should().Be("the lazy dog");
 		}
+
+		[Fact]
+		public void ResolverCanSerializeGrpcReplyContainingNullField() {
+			SitReply sitReply = new() {
+				StringField = "asd",
+				Lorem = null
+			};
+
+			byte[] bytes = sitReply.SerializeUsingMessagePack();
+			SitReply deserialized = bytes.DeserializeUsingMessagePack<SitReply>()!;
+
+			deserialized.StringField.Should().Be("asd");
+			deserialized.Lorem.Should().BeNull();
+		}
+
+		[Fact]
+		public void ResolverCanSerializeGrpcReplyWithNoneField() {
+			IpsumReply ipsumReply = new() {
+			};
+
+			byte[] bytes = ipsumReply.SerializeUsingMessagePack();
+			IpsumReply deserialized = bytes.DeserializeUsingMessagePack<IpsumReply>()!;
+
+			deserialized.StatusCase.Should().Be(IpsumReply.StatusOneofCase.None);
+			deserialized.Sasuke.Should().BeNull();
+			deserialized.Naruto.Should().BeNull();
+		}
 	}
 }
