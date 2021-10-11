@@ -31,7 +31,6 @@
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.3.85" />
     <PackageReference Include="Google.Protobuf" Version="3.18.1" />
-    <PackageReference Include="RG.Missil" Version="1.0.13" />
   </ItemGroup>
 
 </Project>
