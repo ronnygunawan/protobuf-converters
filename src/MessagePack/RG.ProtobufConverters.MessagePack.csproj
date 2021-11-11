@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RG.ProtobufConverters.MessagePack</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Ronny Gunawan</Authors>
     <Product>RG,ProtobufConverters.MessagePack</Product>
     <Description>Serialize generated protobuf classes using MessagePack</Description>
@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.3.85" />
-    <PackageReference Include="Google.Protobuf" Version="3.18.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.19.1" />
   </ItemGroup>
 
 </Project>
