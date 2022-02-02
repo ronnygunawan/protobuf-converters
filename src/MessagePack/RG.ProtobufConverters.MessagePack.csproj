@@ -7,11 +7,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RG.ProtobufConverters.MessagePack</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Ronny Gunawan</Authors>
     <Product>RG,ProtobufConverters.MessagePack</Product>
     <Description>Serialize generated protobuf classes using MessagePack</Description>
-    <Copyright>(C) 2021 Ronny Gunawan</Copyright>
+    <Copyright>(C) 2022 Ronny Gunawan</Copyright>
     <PackageProjectUrl>https://github.com/ronnygunawan/protobuf-converters</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ronnygunawan/protobuf-converters</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="MessagePack" Version="2.3.85" />
-    <PackageReference Include="Google.Protobuf" Version="3.19.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.19.4" />
   </ItemGroup>
 
 </Project>

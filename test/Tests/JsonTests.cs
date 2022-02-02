@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Text.Json;
+using FluentAssertions;
 using Protos.Foo;
 using RG.ProtobufConverters.Json;
 using Xunit;
@@ -15,6 +16,24 @@ namespace Tests {
 			};
 
 			string json = loremRequest.SerializeToJson();
+			LoremRequest deserialized = json.DeserializeToProtobufMessage<LoremRequest>()!;
+
+			deserialized.StringField.Should().Be("asdfg");
+			deserialized.IntField.Should().Be(123456);
+			deserialized.BoolField.Should().BeTrue();
+			deserialized.EnumField.Should().Be(TeletubbiesName.Lala);
+		}
+
+		[Fact]
+		public void CanSerializeGrpcRequestContainingCamelCaseProperties() {
+			var loremRequest = new {
+				stringField = "asdfg",
+				intField = 123456,
+				boolField = true,
+				enumField = TeletubbiesName.Lala
+			};
+
+			string json = JsonSerializer.Serialize(loremRequest);
 			LoremRequest deserialized = json.DeserializeToProtobufMessage<LoremRequest>()!;
 
 			deserialized.StringField.Should().Be("asdfg");
