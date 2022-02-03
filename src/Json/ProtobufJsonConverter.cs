@@ -69,22 +69,23 @@ namespace RG.ProtobufConverters.Json {
 				.Except(repeatedProperties)
 				.Except(oneofCaseProperties)
 				.Except(oneofProperties)
-				.ToDictionary(p => p.Name);
+				.ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
 
 			_repeatedPropertyByName = repeatedProperties
-				.ToDictionary(p => p.Name);
+				.ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
 
 			_repeatedPropertyAdderByName = repeatedProperties
 				.ToDictionary(
 					keySelector: p => p.Name,
-					elementSelector: p => p.PropertyType.GetMethod("Add", new[] { p.PropertyType.GenericTypeArguments[0] })!
+					elementSelector: p => p.PropertyType.GetMethod("Add", new[] { p.PropertyType.GenericTypeArguments[0] })!,
+					comparer: StringComparer.OrdinalIgnoreCase
 				);
 
 			_oneofCasePropertyByName = oneofCaseProperties
-				.ToDictionary(p => p.Name);
+				.ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
 
 			Dictionary<string, PropertyInfo> oneofPropertiesByName = oneofProperties
-				.ToDictionary(p => p.Name);
+				.ToDictionary(p => p.Name, StringComparer.OrdinalIgnoreCase);
 
 			_oneofPropertiesByOneofCase = oneofCaseProperties
 				.ToDictionary(
@@ -93,7 +94,8 @@ namespace RG.ProtobufConverters.Json {
 						.Where(n => n != "None")
 						.ToDictionary(
 							keySelector: n => n,
-							elementSelector: n => oneofPropertiesByName[n]
+							elementSelector: n => oneofPropertiesByName[n],
+							comparer: StringComparer.OrdinalIgnoreCase
 						)
 				);
 		}
