@@ -7,7 +7,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RG.ProtobufConverters.MessagePack</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <Authors>Ronny Gunawan</Authors>
     <Product>RG,ProtobufConverters.MessagePack</Product>
     <Description>Serialize generated protobuf classes using MessagePack</Description>

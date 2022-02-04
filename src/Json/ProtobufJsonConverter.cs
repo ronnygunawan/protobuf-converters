@@ -19,7 +19,9 @@ namespace RG.ProtobufConverters.Json {
 			Converters = {
 				Instance,
 				RepeatedFieldConverter.Instance
-			}
+			},
+			PropertyNameCaseInsensitive = true,
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 		};
 
 		private ProtobufJsonConverter() { }
