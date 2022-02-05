@@ -137,14 +137,14 @@ namespace RG.ProtobufConverters.Json {
 					string caseName = JsonSerializer.Deserialize(ref reader, oneofCaseProperty.PropertyType, options)!.ToString()!;
 
 					// Skip reading oneof property
-					if (caseName == "None") {
+					if (StringComparer.OrdinalIgnoreCase.Equals(caseName, "None")) {
 						continue;
 					}
 
 					// Get next property key
 					if (!reader.Read()
 						|| reader.TokenType != JsonTokenType.PropertyName
-						|| reader.GetString() != caseName) {
+						|| !StringComparer.OrdinalIgnoreCase.Equals(reader.GetString(), caseName)) {
 						throw new JsonException();
 					}
 
