@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using Shouldly;
 using Protos.Foo;
 using RG.ProtobufConverters.MessagePack;
 using Xunit;
@@ -17,10 +17,10 @@ namespace Tests {
 			byte[] bytes = loremRequest.SerializeUsingMessagePack();
 			LoremRequest deserialized = bytes.DeserializeUsingMessagePack<LoremRequest>()!;
 
-			deserialized.StringField.Should().Be("asdfg");
-			deserialized.IntField.Should().Be(123456);
-			deserialized.BoolField.Should().BeTrue();
-			deserialized.EnumField.Should().Be(TeletubbiesName.Lala);
+			deserialized.StringField.ShouldBe("asdfg");
+			deserialized.IntField.ShouldBe(123456);
+			deserialized.BoolField.ShouldBeTrue();
+			deserialized.EnumField.ShouldBe(TeletubbiesName.Lala);
 		}
 
 		[Fact]
@@ -35,10 +35,10 @@ namespace Tests {
 			byte[] bytes = loremReply.SerializeUsingMessagePack();
 			LoremReply deserialized = bytes.DeserializeUsingMessagePack<LoremReply>()!;
 
-			deserialized.StringField.Should().Be("asdfg");
-			deserialized.IntField.Should().Be(123456);
-			deserialized.BoolField.Should().BeTrue();
-			deserialized.EnumField.Should().Be(TeletubbiesName.Lala);
+			deserialized.StringField.ShouldBe("asdfg");
+			deserialized.IntField.ShouldBe(123456);
+			deserialized.BoolField.ShouldBeTrue();
+			deserialized.EnumField.ShouldBe(TeletubbiesName.Lala);
 		}
 
 		[Fact]
@@ -52,10 +52,10 @@ namespace Tests {
 			byte[] bytes = ipsumReply.SerializeUsingMessagePack();
 			IpsumReply deserialized = bytes.DeserializeUsingMessagePack<IpsumReply>()!;
 
-			deserialized.StatusCase.Should().Be(IpsumReply.StatusOneofCase.Naruto);
-			deserialized.Sasuke.Should().BeNull();
-			deserialized.Naruto.Should().NotBeNull();
-			deserialized.Naruto.StringField.Should().Be("hello world");
+			deserialized.StatusCase.ShouldBe(IpsumReply.StatusOneofCase.Naruto);
+			deserialized.Sasuke.ShouldBeNull();
+			deserialized.Naruto.ShouldNotBeNull();
+			deserialized.Naruto.StringField.ShouldBe("hello world");
 		}
 
 		[Fact]
@@ -74,11 +74,11 @@ namespace Tests {
 			byte[] bytes = dolorReply.SerializeUsingMessagePack();
 			DolorReply deserialized = bytes.DeserializeUsingMessagePack<DolorReply>()!;
 
-			deserialized.StringArray.Should().ContainInOrder("quick", "brown", "fox");
-			deserialized.LoremArray.Should().HaveCount(3);
-			deserialized.LoremArray[0].StringField.Should().Be("jumps");
-			deserialized.LoremArray[1].StringField.Should().Be("over");
-			deserialized.LoremArray[2].StringField.Should().Be("the lazy dog");
+			deserialized.StringArray.ShouldBe(new[] { "quick", "brown", "fox" });
+			deserialized.LoremArray.Count.ShouldBe(3);
+			deserialized.LoremArray[0].StringField.ShouldBe("jumps");
+			deserialized.LoremArray[1].StringField.ShouldBe("over");
+			deserialized.LoremArray[2].StringField.ShouldBe("the lazy dog");
 		}
 
 		[Fact]
@@ -91,8 +91,8 @@ namespace Tests {
 			byte[] bytes = sitReply.SerializeUsingMessagePack();
 			SitReply deserialized = bytes.DeserializeUsingMessagePack<SitReply>()!;
 
-			deserialized.StringField.Should().Be("asd");
-			deserialized.Lorem.Should().BeNull();
+			deserialized.StringField.ShouldBe("asd");
+			deserialized.Lorem.ShouldBeNull();
 		}
 
 		[Fact]
@@ -103,9 +103,9 @@ namespace Tests {
 			byte[] bytes = ipsumReply.SerializeUsingMessagePack();
 			IpsumReply deserialized = bytes.DeserializeUsingMessagePack<IpsumReply>()!;
 
-			deserialized.StatusCase.Should().Be(IpsumReply.StatusOneofCase.None);
-			deserialized.Sasuke.Should().BeNull();
-			deserialized.Naruto.Should().BeNull();
+			deserialized.StatusCase.ShouldBe(IpsumReply.StatusOneofCase.None);
+			deserialized.Sasuke.ShouldBeNull();
+			deserialized.Naruto.ShouldBeNull();
 		}
 	}
 }
